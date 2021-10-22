@@ -14,8 +14,8 @@ export default function Menu() {
           <Link to="/">Home</Link>
           <Link to="/SampleUseState">useState</Link>
           <Link to="/SampleUseEffect">useEffect</Link>
-          <Link to="/SampleUseContext">useContext</Link>
           <Link to="/SampleUseRef">useRef</Link>
+          <Link to="/SampleUseContext">useContext</Link>
         </ul>
       </nav>
 
@@ -25,8 +25,8 @@ export default function Menu() {
         <Switch>
           <Route path="/SampleUseState" component={SampleUseState}></Route>
           <Route path="/SampleUseEffect" component={SampleUseEffect}></Route>
-          <Route path="/SampleUseContext" component={SampleUseContext}></Route>
           <Route path="/SampleUseRef" component={SampleUseRef}></Route>
+          <Route path="/SampleUseContext" component={SampleUseContext}></Route>
           <Route path="/">
             <Home />
           </Route>
