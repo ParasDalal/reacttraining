@@ -4,6 +4,8 @@ import Home from "../pages/Home";
 import SampleUseState from "../pages/SampleUseState";
 import SampleUseEffect from "../pages/SampleUseEffect";
 import SampleUseContext from "../pages/SampleUseContext";
+import SampleUseRef from "../pages/SampleUseRef";
+
 export default function Menu() {
   return (
     <div className="topnav">
@@ -13,6 +15,7 @@ export default function Menu() {
           <Link to="/SampleUseState">useState</Link>
           <Link to="/SampleUseEffect">useEffect</Link>
           <Link to="/SampleUseContext">useContext</Link>
+          <Link to="/SampleUseRef">useRef</Link>
         </ul>
       </nav>
 
@@ -23,6 +26,7 @@ export default function Menu() {
           <Route path="/SampleUseState" component={SampleUseState}></Route>
           <Route path="/SampleUseEffect" component={SampleUseEffect}></Route>
           <Route path="/SampleUseContext" component={SampleUseContext}></Route>
+          <Route path="/SampleUseRef" component={SampleUseRef}></Route>
           <Route path="/">
             <Home />
           </Route>
