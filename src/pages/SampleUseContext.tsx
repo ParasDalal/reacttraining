@@ -1,18 +1,18 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { UserInfo, UserHandler } from "../interfaces/UserInfo";
+import React, { createContext, useContext, useEffect, useState } from 'react'
+import { UserInfo, UserHandler } from '../interfaces/UserInfo'
 
-const userCtx = createContext<Partial<UserHandler>>({});
+const userCtx = createContext<Partial<UserHandler>>({})
 
 function SampleUseContext() {
-  const sampleUser: UserInfo = { firstname: "Paras", lastname: "Dalal" };
-  const [currUser, setCurrUser] = useState<UserInfo>(sampleUser);
+  const sampleUser: UserInfo = { firstname: 'Paras', lastname: 'Dalal' }
+  const [currUser, setCurrUser] = useState<UserInfo>(sampleUser)
   return (
     <userCtx.Provider value={{ user: currUser, setUser: setCurrUser }}>
       <Intermediate />
       <br />
       <UserForm />
     </userCtx.Provider>
-  );
+  )
 }
 
 function Intermediate() {
@@ -20,11 +20,11 @@ function Intermediate() {
     <div>
       <DisplayUser />
     </div>
-  );
+  )
 }
 
 function DisplayUser() {
-  const currUserHandler = useContext(userCtx);
+  const currUserHandler = useContext(userCtx)
   return (
     <div>
       <div>First Name: {currUserHandler?.user?.firstname}</div>
@@ -33,44 +33,32 @@ function DisplayUser() {
       <button
         onClick={() => {
           if (currUserHandler?.setUser) {
-            currUserHandler?.setUser({ firstname: "Test", lastname: "New" });
+            currUserHandler?.setUser({ firstname: 'Test', lastname: 'New' })
           }
         }}
       >
         Change
       </button>
     </div>
-  );
+  )
 }
 
 function UserForm() {
-  const currUserHandler = useContext(userCtx);
+  const currUserHandler = useContext(userCtx)
   const [f, setF] = useState<string>(
-    currUserHandler?.user?.firstname === undefined
-      ? ""
-      : currUserHandler?.user?.firstname
-  );
+    currUserHandler?.user?.firstname === undefined ? '' : currUserHandler?.user?.firstname
+  )
   const [l, setL] = useState(
-    currUserHandler?.user?.lastname === undefined
-      ? ""
-      : currUserHandler?.user?.lastname
-  );
+    currUserHandler?.user?.lastname === undefined ? '' : currUserHandler?.user?.lastname
+  )
   useEffect(() => {
-    setF(
-      currUserHandler?.user?.firstname === undefined
-        ? ""
-        : currUserHandler?.user?.firstname
-    );
-    setL(
-      currUserHandler?.user?.lastname === undefined
-        ? ""
-        : currUserHandler?.user?.lastname
-    );
-  }, [currUserHandler?.user?.firstname, currUserHandler?.user?.lastname]);
+    setF(currUserHandler?.user?.firstname === undefined ? '' : currUserHandler?.user?.firstname)
+    setL(currUserHandler?.user?.lastname === undefined ? '' : currUserHandler?.user?.lastname)
+  }, [currUserHandler?.user?.firstname, currUserHandler?.user?.lastname])
   function onClk(e: React.SyntheticEvent) {
-    e.preventDefault();
+    e.preventDefault()
     if (currUserHandler?.setUser) {
-      currUserHandler?.setUser({ firstname: f, lastname: l });
+      currUserHandler?.setUser({ firstname: f, lastname: l })
     }
   }
   return (
@@ -81,7 +69,7 @@ function UserForm() {
         id="first"
         value={f}
         onChange={(e: React.FormEvent<HTMLInputElement>) => {
-          setF(e.currentTarget.value);
+          setF(e.currentTarget.value)
         }}
       ></input>
       <br />
@@ -91,17 +79,17 @@ function UserForm() {
         id="last"
         value={l}
         onChange={(e: React.FormEvent<HTMLInputElement>) => {
-          setL(e.currentTarget.value);
+          setL(e.currentTarget.value)
         }}
       ></input>
       <button
         onClick={(e) => {
-          onClk(e);
+          onClk(e)
         }}
       >
         Submit
       </button>
     </form>
-  );
+  )
 }
-export default SampleUseContext;
+export default SampleUseContext

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from 'react'
 
 function SampleUseState() {
-  const [count, setCount] = useState(0);
-  const [obj, setObj] = useState({ name: "Test User", address: "nowhere" });
+  const [count, setCount] = useState(0)
+  const [obj, setObj] = useState({ name: 'Test User', address: 'nowhere' })
 
   return (
     <div>
@@ -19,17 +19,13 @@ function SampleUseState() {
           <br />
           <div>Address: {obj.address}</div>
           <br />
-          <button
-            onClick={() =>
-              setObj({ name: "Someone else", address: "somewhere" })
-            }
-          >
+          <button onClick={() => setObj({ name: 'Someone else', address: 'somewhere' })}>
             Change
           </button>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default SampleUseState;
+export default SampleUseState
