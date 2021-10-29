@@ -28,10 +28,10 @@ function SampleUseReducer() {
         return InitialCompanies
       case 'add':
         if (data) {
-          console.log('Add company')
+          /* console.log('Add company')
           data.push(action.newCompany)
-          return [...data]
-          // return [...data, action.newCompany]
+          return [...data] */
+          return [...data, action.newCompany]
         } else return InitialCompanies
       case 'delete':
         if (data) {
@@ -42,22 +42,12 @@ function SampleUseReducer() {
   }
   const [companies, setCompanies] = useReducer(maintainCompanies, InitialCompanies)
 
-  function takeAction(s: string) {
-    console.log('I am in takeAction')
-    if (s === 'add') {
-      setCompanies(addAction)
-    }
-    if (s === 'delete') {
-      setCompanies(deleteAction)
-    }
-  }
-
   return (
     <div>
       <div>Total Companies: {companies.length.toString()}</div>
       <button onClick={() => setCompanies(initialAction)}>Initial</button>
-      <button onClick={() => takeAction('add')}>Add</button>
-      <button onClick={() => takeAction('delete')}>Delete</button>
+      <button onClick={() => setCompanies(addAction)}>Add</button>
+      <button onClick={() => setCompanies(deleteAction)}>Delete</button>
       <table>
         {companies.map((item) => {
           return (
