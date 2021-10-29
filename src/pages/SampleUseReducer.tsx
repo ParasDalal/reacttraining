@@ -1,38 +1,55 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { UserInfo, UserHandler } from "../interfaces/UserInfo";
+import React, { useReducer } from "react";
 
-interface CompanyInfo {
+type CompanyInfo = {
   symbol: string;
   name: string;
   price: number;
 }
 
 type Action =
-  | { type: "initial"; data: CompanyInfo[] }
+  | { type: "initial" }
   | { type: "add"; newCompany: CompanyInfo }
   | { type: "delete"; symbol: string };
 
-function SampleUseReducer() {
-  const startData: CompanyInfo[] = [
-    { symbol: "MSFT", name: "Microsoft", price: 200 },
-    { symbol: "ORCL", name: "Oracle", price: 300 },
-  ];
+const initialAction: Action = {type : "initial"}
+const addAction: Action = {type: "add", newCompany: {symbol: "ORCL", name: "Oracle", price: 540}}
+const deleteAction: Action = {type: "delete", symbol: "MSFT"}
 
-  function maintainCompanies(data: CompanyInfo[], action: Action) {
+function SampleUseReducer(){
+  const InitialCompanies: CompanyInfo[] = 
+    [{symbol: "MSFT", name: "Microsoft", price: 200}]
+
+
+  function maintainCompanies(data: CompanyInfo[], action: Action): CompanyInfo[] {
+    console.log("I am in maintainCompanies");
     switch (action.type) {
       case "initial":
-        return { data: startData };
+        return InitialCompanies ;
       case "add":
-        return {[...data, newCompany]}
+          if (data) {console.log("Add company");data.push(action.newCompany); return [...data]}
+          else  return  InitialCompanies 
       case "delete":
+        if (data) {data = data.filter((s) => s.symbol !== action.symbol); return [...data]}
+        else return InitialCompanies
+        }
     }
-  }
-  const [companies, setCompanies] = React.useReducer(
-    startData,
-    maintainCompanies
-  );
+  const [companies, setCompanies] = useReducer(maintainCompanies, InitialCompanies)
 
-  return <div>useReducer</div>;
+  function takeAction(s:string){
+    console.log("I am in takeAction");
+    if (s === "add") {setCompanies(addAction)};
+    if (s === "delete") {setCompanies(deleteAction)};
+  }
+
+  return (<div>
+      <div>Total Companies: {companies.length.toString()}</div>
+      <button onClick={() => setCompanies(initialAction)} >Initial</button>
+      <button onClick={() => takeAction("add")} >Add</button>
+      <button onClick={() => takeAction("delete")} >Delete</button>
+      <table>{companies.map(item => {
+          return <tr><td>{item.name}</td></tr>;
+        })}  </table></div>);
 }
 
 export default SampleUseReducer;
+
