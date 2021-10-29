@@ -5,6 +5,7 @@ import SampleUseState from "../pages/SampleUseState";
 import SampleUseEffect from "../pages/SampleUseEffect";
 import SampleUseContext from "../pages/SampleUseContext";
 import SampleUseRef from "../pages/SampleUseRef";
+import SampleUseReducer from "../pages/SampleUseReducer";
 
 export default function Menu() {
   return (
@@ -16,6 +17,7 @@ export default function Menu() {
           <Link to="/SampleUseEffect">useEffect</Link>
           <Link to="/SampleUseRef">useRef</Link>
           <Link to="/SampleUseContext">useContext</Link>
+          <Link to="/SampleUseReducer">useReducer</Link>
         </ul>
       </nav>
 
@@ -27,6 +29,7 @@ export default function Menu() {
           <Route path="/SampleUseEffect" component={SampleUseEffect}></Route>
           <Route path="/SampleUseRef" component={SampleUseRef}></Route>
           <Route path="/SampleUseContext" component={SampleUseContext}></Route>
+          <Route path="/SampleUseReducer" component={SampleUseReducer}></Route>
           <Route path="/">
             <Home />
           </Route>
